@@ -1,5 +1,6 @@
 package com.etjava.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -10,9 +11,13 @@ import lombok.Data;
 
 @TableName("t_user")
 @Data
-public class User {
+public class User implements Serializable{
 
-    @TableId(type= IdType.AUTO)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@TableId(type= IdType.AUTO)
     private Integer id;
     private String username;
     private String password;
