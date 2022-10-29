@@ -29,8 +29,7 @@ public class TokenController {
 		
 		String token = request.getHeader("token");
 		System.out.println("token剩余有效时间："+redisUtil.getExpire(Constant.REDIS_TOKEN_PREFIX+token));
-        // 重置token的有效时间
-        redisUtil.expire(Constant.REDIS_TOKEN_PREFIX,token,Constant.REDIS_TOKEN_EXPIRE);
+        // 重置token的有效时间 key=prefix+token
         redisUtil.expire(Constant.REDIS_TOKEN_PREFIX,token,Constant.REDIS_TOKEN_EXPIRE);
         System.out.println("重置后token剩余有效时间："+redisUtil.getExpire(Constant.REDIS_TOKEN_PREFIX+token));
 		// 只是刷新token的有效期 不需要将token重新传递到前端 因为前端保存的有
