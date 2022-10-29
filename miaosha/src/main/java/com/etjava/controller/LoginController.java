@@ -5,9 +5,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.etjava.constant.Constant;
 import com.etjava.entity.R;
 import com.etjava.entity.User;
 import com.etjava.service.IUserService;
+import com.etjava.util.Md5Util;
+import com.etjava.util.RedisUtil;
 import com.etjava.util.StringUtil;
 
 @RestController
@@ -16,6 +19,9 @@ public class LoginController {
 
     @Autowired
     private IUserService userService;
+    
+    @Autowired
+    private RedisUtil redisUtil;
 
     /**
      * 用户登录
@@ -40,10 +46,12 @@ public class LoginController {
     	if(user2==null) {
     		return R.error("账号信息不存在");
     	}
-    	if(!user2.getPassword().equals(user.getPassword())) {
+    	if(!user2.getPassword().equals(Md5Util.backMd5(user.getPassword()))) {
     		return R.error("密码错误");
     	}
-    	
-        return R.ok();
+    	// 登录成功需要生成token并保存到redis中 - 前后端分离
+    	String token = StringUtil.uuid();
+    	redisUtil.set(Constant.REDIS_TOKEN_PREFIX,token,user,Constant.REDIS_TOKEN_EXPIRE);
+        return R.ok(token);// 将token传递到前端
     }
 }

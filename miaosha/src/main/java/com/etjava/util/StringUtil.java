@@ -3,6 +3,7 @@ package com.etjava.util;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * 字符串工具类
@@ -10,6 +11,14 @@ import java.util.Random;
  *
  */
 public class StringUtil {
+	
+	/**
+	 * UUID 不带-符号
+	 * @return
+	 */
+	public static String uuid() {
+		return UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
+	}
 
 	/**
 	 * 判断是否是空
