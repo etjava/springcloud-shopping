@@ -5,8 +5,9 @@ import java.util.Map;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.etjava.entity.MiaoShaGoods;
+import com.etjava.entity.vo.MiaoShaGoodsVo;
 
 public interface MiaoShaGoodsMapper extends BaseMapper<MiaoShaGoods> {
 
-	List<MiaoShaGoods> listAll(Map<String,Object> map);
+	List<MiaoShaGoodsVo> listAll(Map<String,Object> map);
 }

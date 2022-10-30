@@ -4,7 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.etjava.mapper.MiaoShaGoodsMapper">
 
-    <resultMap type="com.etjava.entity.Goods" id="MiaoShaGoodsResult">
+    <resultMap type="com.etjava.entity.vo.MiaoShaGoodsVo" id="MiaoShaGoodsResult">
+    	 <association property="goods" column="goods_id" select="com.etjava.mapper.GoodsMapper.findById"></association>
     </resultMap>
 
 	<select id="listAll" parameterType="Map" resultMap="MiaoShaGoodsResult">

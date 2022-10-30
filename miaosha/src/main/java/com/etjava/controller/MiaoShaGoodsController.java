@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.etjava.constant.Constant;
-import com.etjava.entity.MiaoShaGoods;
 import com.etjava.entity.R;
+import com.etjava.entity.vo.MiaoShaGoodsVo;
 import com.etjava.service.IMiaoShaGoodsService;
 import com.etjava.util.RedisUtil;
 
@@ -30,7 +30,7 @@ public class MiaoShaGoodsController {
      */
     @RequestMapping("/findAll")
     public R findAll(){
-        List<MiaoShaGoods> miaoShaGoodsList=null;
+        List<MiaoShaGoodsVo> miaoShaGoodsList=null;
         Object o=redisUtil.get(Constant.REDIS_MIAOSHA_GOODS);
         if(o==null){
             System.out.println("从数据库里面查询");
@@ -38,7 +38,7 @@ public class MiaoShaGoodsController {
             redisUtil.set(Constant.REDIS_MIAOSHA_GOODS,miaoShaGoodsList,Constant.REDIS_MIAOSHA_GOODS_EXPIRE);
         }else{
             System.out.println("从redis中取值 = "+o);
-            miaoShaGoodsList = (List<MiaoShaGoods>) o;
+            miaoShaGoodsList = (List<MiaoShaGoodsVo>) o;
         }
         Map<String,Object> map=new HashMap<>();
         map.put("data",miaoShaGoodsList);

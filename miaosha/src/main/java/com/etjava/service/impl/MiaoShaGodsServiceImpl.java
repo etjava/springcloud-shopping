@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.etjava.entity.MiaoShaGoods;
+import com.etjava.entity.vo.MiaoShaGoodsVo;
 import com.etjava.mapper.MiaoShaGoodsMapper;
 import com.etjava.service.IMiaoShaGoodsService;
 
@@ -18,7 +19,7 @@ public class MiaoShaGodsServiceImpl  extends ServiceImpl<MiaoShaGoodsMapper, Mia
     private MiaoShaGoodsMapper miaoshaGoodsMapper;
 
 	@Override
-	public List<MiaoShaGoods> listAll(Map<String,Object> map) {
+	public List<MiaoShaGoodsVo> listAll(Map<String,Object> map) {
 		return miaoshaGoodsMapper.listAll(map);
 	}
 	

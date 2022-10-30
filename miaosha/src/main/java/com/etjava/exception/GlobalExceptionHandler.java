@@ -21,6 +21,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(value = Exception.class)
     public R exceptionHandler(HttpServletRequest request,Exception e){
         System.out.println("全局异常捕获 ："+e);
+        e.printStackTrace();
         return R.error("服务端异常 <br /> "+e.getMessage()+"<br/>"+e.getStackTrace());
     }
 }

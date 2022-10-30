@@ -4,13 +4,18 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import lombok.Data;
 
 /**
  * 	秒杀商品实体
  * @author etjava
  *
  */
+@TableName("t_goods_miaosha")
+@Data
 public class MiaoShaGoods implements Serializable{
 
 	/**
