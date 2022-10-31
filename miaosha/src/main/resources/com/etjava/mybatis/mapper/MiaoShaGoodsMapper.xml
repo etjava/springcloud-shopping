@@ -15,5 +15,9 @@
     <select id="findById" parameterType="Integer" resultMap="MiaoShaGoodsResult">
     	select * from t_miaosha_goods where id=#{id}
     </select>
+    
+    <update id="reduceStock" parameterType="Integer">
+        update t_miaosha_goods set stock=stock-1 where id=#{id}
+    </update>
 
 </mapper>

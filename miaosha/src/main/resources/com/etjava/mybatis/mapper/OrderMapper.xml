@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etjava.mapper.OrderMapper">
+
+    <resultMap type="com.etjava.entity.Order" id="OrderResult">
+    </resultMap>
+
+	<select id="findById" parameterType="Integer" resultMap="OrderResult">
+        select * from t_order where id=#{id}
+    </select>
+    
+    <insert id="add" parameterType="com.etjava.entity.Order">
+        insert into t_order values (#{id},#{user.id},#{miaoShaGoods.id},#{count},#{totalPrice},#{payMethod},#{status},now(),now())
+    </insert>
+
+</mapper>

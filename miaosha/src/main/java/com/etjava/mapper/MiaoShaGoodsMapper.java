@@ -12,4 +12,10 @@ public interface MiaoShaGoodsMapper extends BaseMapper<MiaoShaGoods> {
 	List<MiaoShaGoodsVo> listAll(Map<String,Object> map);
 
 	MiaoShaGoodsVo findById(Integer id);
+	
+	 /**
+     * 	减库存
+     * @param id
+     */
+    Integer reduceStock(Integer id);
 }
