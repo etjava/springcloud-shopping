@@ -1,6 +1,7 @@
 package com.etjava.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,11 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.etjava.constant.Constant;
+import com.etjava.entity.Order;
 import com.etjava.entity.R;
 import com.etjava.entity.User;
 import com.etjava.entity.vo.MiaoShaGoodsVo;
 import com.etjava.service.IMiaoShaGoodsService;
 import com.etjava.service.IMiaoShaService;
+import com.etjava.service.IOrderService;
 import com.etjava.util.RedisUtil;
 import com.etjava.util.StringUtil;
 
@@ -35,6 +38,8 @@ public class MiaoShaController {
     @Autowired
     private IMiaoShaService miaoShaService;
     
+    @Autowired
+    private IOrderService orderService;
     
     /**
      * 	执行秒杀
@@ -63,7 +68,14 @@ public class MiaoShaController {
             return R.error("秒杀商品库存不足");
         }
         // 第三步 判断是否重复秒杀
-
+        Map<String,Object> orderMap = new HashMap<>();
+        orderMap.put("userId",u.getId());
+        orderMap.put("miaoshaGoodsId", miaoshaGoods.getId());
+        List<Order> orderList = orderService.findOrderWithUIDAndMiaoShaGoodsId(orderMap);
+        if(orderList.size()!=0) {
+        	return R.error("已参加过当前商品的秒杀活动");
+        }
+        
         // 第四步 减库存 下订单 必须同一个事务
         String orderId = miaoShaService.miaosha(u, miaoshaGoods);
         if(orderId!=null){

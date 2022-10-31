@@ -14,5 +14,9 @@
     <insert id="add" parameterType="com.etjava.entity.Order">
         insert into t_order values (#{id},#{user.id},#{miaoShaGoods.id},#{count},#{totalPrice},#{payMethod},#{status},now(),now())
     </insert>
+    
+    <select id="findOrderWithUIDAndMiaoShaGoodsId" parameterType="Map" resultMap="OrderResult">
+        select * from t_order where user_id=#{userId} and miaosha_goods_id=#{miaoshaGoodsId}
+    </select>
 
 </mapper>

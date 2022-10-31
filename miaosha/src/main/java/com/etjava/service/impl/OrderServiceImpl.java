@@ -1,5 +1,8 @@
 package com.etjava.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 	@Override
 	public Integer add(Order order) {
 		return orderMapper.add(order);
+	}
+
+	@Override
+	public List<Order> findOrderWithUIDAndMiaoShaGoodsId(Map<String, Object> map) {
+		return orderMapper.findOrderWithUIDAndMiaoShaGoodsId(map);
 	}
 
 }
