@@ -10,4 +10,6 @@ import com.etjava.entity.vo.MiaoShaGoodsVo;
 public interface MiaoShaGoodsMapper extends BaseMapper<MiaoShaGoods> {
 
 	List<MiaoShaGoodsVo> listAll(Map<String,Object> map);
+
+	MiaoShaGoodsVo findById(Integer id);
 }

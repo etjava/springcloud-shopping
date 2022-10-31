@@ -22,6 +22,11 @@ public class MiaoShaGodsServiceImpl  extends ServiceImpl<MiaoShaGoodsMapper, Mia
 	public List<MiaoShaGoodsVo> listAll(Map<String,Object> map) {
 		return miaoshaGoodsMapper.listAll(map);
 	}
+
+	@Override
+	public MiaoShaGoodsVo findById(Integer id) {
+		return miaoshaGoodsMapper.findById(id);
+	}
 	
 	
 }

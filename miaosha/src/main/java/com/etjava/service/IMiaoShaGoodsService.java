@@ -10,4 +10,6 @@ import com.etjava.entity.vo.MiaoShaGoodsVo;
 public interface IMiaoShaGoodsService extends IService<MiaoShaGoods>{
 
 	public List<MiaoShaGoodsVo> listAll(Map<String,Object> map);
+	
+	public MiaoShaGoodsVo findById(Integer id);
 }
