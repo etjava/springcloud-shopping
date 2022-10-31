@@ -51,7 +51,7 @@ public class LoginController {
     	}
     	// 登录成功需要生成token并保存到redis中 - 前后端分离
     	String token = StringUtil.uuid();
-    	redisUtil.set(Constant.REDIS_TOKEN_PREFIX,token,user,Constant.REDIS_TOKEN_EXPIRE);
+    	redisUtil.set(Constant.REDIS_TOKEN_PREFIX,token,user2,Constant.REDIS_TOKEN_EXPIRE);
         return R.ok(token);// 将token传递到前端
     }
 }
