@@ -15,9 +15,12 @@
     <select id="findById" parameterType="Integer" resultMap="MiaoShaGoodsResult">
     	select * from t_miaosha_goods where id=#{id}
     </select>
-    
+    <!-- 
+    	减库存 
+    	减库存时需要注意超卖现象 可以通过行级锁控制 即 数据库层面的乐观锁 and stock>0
+     -->
     <update id="reduceStock" parameterType="Integer">
-        update t_miaosha_goods set stock=stock-1 where id=#{id}
+        update t_miaosha_goods set stock=stock-1 where id=#{id} and stock>0
     </update>
 
 </mapper>

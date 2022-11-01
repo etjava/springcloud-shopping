@@ -37,6 +37,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		 List<String> reqList = new ArrayList<>();
 	        reqList.add("/login");
+	        reqList.add("/register");
 	        reqList.add("/miaoShaGoods/findAll");
 	        
 	        registry.addInterceptor(sysInterceptor()) // 添加拦截器
