@@ -70,11 +70,16 @@ public class RedisConfig {
 	}
 
 
+	/**
+	 * 使用自定义的序列化类
+	 * @param lettuceConnectionFactory
+	 * @return
+	 */
 	@Bean(name="redisTemplate")
 	public RedisTemplate<String, Object> redisTemplate(LettuceConnectionFactory lettuceConnectionFactory) {
 		RedisTemplate<String, Object> template = new RedisTemplate<>();
 		template.setConnectionFactory(lettuceConnectionFactory);
-		//序列化类
+		//自定义序列化类
 		MyRedisSerializer myRedisSerializer = new MyRedisSerializer();
 		//key序列化方式
 		template.setKeySerializer(new StringRedisSerializer());
@@ -85,15 +90,38 @@ public class RedisConfig {
 		return template;
 	}
 
+	/**
+	 * 使用原生的序列化类进行序列化
+	 * @param lettuceConnectionFactory
+	 * @return
+	 */
 	@Bean(name="redisTemplate2")
 	public RedisTemplate<String, Object> redisTemplate2(LettuceConnectionFactory lettuceConnectionFactory) {
 		RedisTemplate<String, Object> template = new RedisTemplate<>();
 		template.setConnectionFactory(lettuceConnectionFactory);
-		//序列化类
-		MyRedisSerializer myRedisSerializer = new MyRedisSerializer();
-		//key序列化方式
+		//key序列化方式 - 原生序列化类StringRedisSerializer
 		template.setKeySerializer(new StringRedisSerializer());
-		//value序列化
+		//value序列化 - 原生序列化类StringRedisSerializer
+		template.setValueSerializer(new StringRedisSerializer());
+		return template;
+	}
+	
+	/**
+	 * 使用原生的序列化类 - 将数据存放到下标6的库中
+	 * @param lettuceConnectionFactory
+	 * @return
+	 */
+	@Bean(name="redisTemplate3")
+	public RedisTemplate<String, Object> redisTemplate3(LettuceConnectionFactory lettuceConnectionFactory) {
+		RedisTemplate<String, Object> template = new RedisTemplate<>();
+		LettuceConnectionFactory lettuceConnectionFactoryNew =  new LettuceConnectionFactory(lettuceConnectionFactory.getStandaloneConfiguration());
+
+		lettuceConnectionFactoryNew.setDatabase(6);
+		lettuceConnectionFactoryNew.afterPropertiesSet();
+		template.setConnectionFactory(lettuceConnectionFactoryNew);
+		//key序列化方式 - 原生序列化类StringRedisSerializer
+		template.setKeySerializer(new StringRedisSerializer());
+		//value序列化 - 原生序列化类StringRedisSerializer
 		template.setValueSerializer(new StringRedisSerializer());
 		return template;
 	}
