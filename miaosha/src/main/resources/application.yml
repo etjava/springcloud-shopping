@@ -28,4 +28,7 @@ mybatis-plus:
     auto-mapping-behavior: full  # 自动mapping映射
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:com/etjava/mybatis/mapper/*.xml
+  
+## webAppConfig中映射本地虚拟路径
+image_path: file:D:\\miaoshaimg\\
 
