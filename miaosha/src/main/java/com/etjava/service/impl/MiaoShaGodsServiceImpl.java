@@ -28,5 +28,4 @@ public class MiaoShaGodsServiceImpl  extends ServiceImpl<MiaoShaGoodsMapper, Mia
 		return miaoshaGoodsMapper.findById(id);
 	}
 	
-	
 }
