@@ -4,6 +4,11 @@ server:
     context-path: /
 
 spring:
+  rabbitmq:
+    host: 192.168.199.127
+    port: 5672
+    username: guest
+    password: guest
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
